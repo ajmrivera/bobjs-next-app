@@ -156,9 +156,10 @@ function Form({ applianceList, plantsList }: InferGetStaticPropsType<typeof getS
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
       </Head>
       <Header />
+      <p className='text-4xl font-bold bg-bob-bg pt-4 pl-40'>House Builder</p>
       <div className='flex flex-col justify-center bg-bob-bg'>
         {/* ################################# BASE ################################### */}
-        <div className="mt-10  flex justify-center items-center ">
+        <div className="mt-5  flex justify-center items-center ">
           <FormDivider title="Base" />
         </div>
         <div className="mt-8 sm:px-24 md:px-64 ">
