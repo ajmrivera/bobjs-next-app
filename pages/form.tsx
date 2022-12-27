@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Select from 'react-select';
-import Header from '../components/header'
 import FormDivider from '../components/formdivider'
 import BigButton from '../components/bigbutton';
 import Input from '../components/input';
@@ -11,6 +10,7 @@ import RoomCard from '../components/roomcard';
 import uuid from 'react-uuid'
 import Head from 'next/head'
 import { useRouter } from 'next/router';
+import Header from '../components/header';
 
 function Form({ applianceList, plantsList }: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter();
