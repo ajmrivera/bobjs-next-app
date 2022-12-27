@@ -30,8 +30,8 @@ function Form({ applianceList, plantsList }: InferGetStaticPropsType<typeof getS
       kitchen_appliances: [],
     }
   ]);
-  const [roofType, setRoofType] = useState<string|null>(null);
-  const [roofStyle, setRoofStyle] = useState<string|null>(null);
+  const [roofType, setRoofType] = useState<string|null>("Tiled");
+  const [roofStyle, setRoofStyle] = useState<string|null>("Dutch");
   const [gardenPlants, setGardenPlants] = useState<ObjectType[]>([]);
   const [modalOn, setModalOn] = useState<boolean>(false);
   const [houseData, setHouseData] = useState<HouseType|null>(null);
@@ -55,30 +55,36 @@ function Form({ applianceList, plantsList }: InferGetStaticPropsType<typeof getS
   }, []);
 
   const roofTypes = [
-    {"key": "straw", "value": "Straw"},
-    {"key": "thatched", "value": "Thatched"},
-    {"key": "tiled", "value": "Tiled"},
-    {"key": "flat", "value": "Flat"},
+    {"key": "Straw", "value": "Straw"},
+    {"key": "Thatched", "value": "Thatched"},
+    {"key": "Tiled", "value": "Tiled"},
+    {"key": "Flat", "value": "Flat"},
+  ]
+
+  const foundationTypes = [
+    {"key": "Brick", "value": "Brick"},
+    {"key": "Slab", "value": "Slab"},
+    {"key": "Reinforced Concrete", "value": "Reinforced Concrete"},
   ]
 
   const roofStyles = [
-    {"key": "gable", "value": "Gable"},
-    {"key": "hip", "value": "Hip"},
-    {"key": "dutch", "value": "Dutch"},
-    {"key": "jerkinhead", "value": "Jerkinhead"},
-    {"key": "pyramid", "value": "Pyramid"},
-    {"key": "mansard", "value": "Mansard"},
-    {"key": "bonnet", "value": "Bonnet"},
-    {"key": "gambrel", "value": "Gambrel"},
-    {"key": "skillion", "value": "Skillion"},
-    {"key": "curved", "value": "Curved"},
-    {"key": "flat", "value": "Flat"},
-    {"key": "satlbox", "value": "Satlbox"},
-    {"key": "butterfly", "value": "Butterfly"},
-    {"key": "sawtooth", "value": "Sawtooth"},
-    {"key": "dormer", "value": "Dormer"},
+    {"key": "Gable", "value": "Gable"},
+    {"key": "Hip", "value": "Hip"},
+    {"key": "Dutch", "value": "Dutch"},
+    {"key": "Jerkinhead", "value": "Jerkinhead"},
+    {"key": "Pyramid", "value": "Pyramid"},
+    {"key": "Mansard", "value": "Mansard"},
+    {"key": "Bonnet", "value": "Bonnet"},
+    {"key": "Gambrel", "value": "Gambrel"},
+    {"key": "Skillion", "value": "Skillion"},
+    {"key": "Curved", "value": "Curved"},
+    {"key": "Flat", "value": "Flat"},
+    {"key": "Satlbox", "value": "Satlbox"},
+    {"key": "Butterfly", "value": "Butterfly"},
+    {"key": "Sawtooth", "value": "Sawtooth"},
+    {"key": "Dormer", "value": "Dormer"},
   ]
-  console.log(gardenPlants)
+
   const createRoom = (newRoom:RoomObjectType) => {
     const newArray = roomsData
     newArray.push(newRoom)
@@ -156,28 +162,39 @@ function Form({ applianceList, plantsList }: InferGetStaticPropsType<typeof getS
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
       </Head>
       <Header />
-      <p className='text-4xl font-bold bg-bob-bg pt-4 pl-40'>House Builder</p>
+      <p className='text-2xl lg:text-4xl font-bold bg-bob-bg pt-4 flex justify-center'>House Builder</p>
       <div className='flex flex-col justify-center bg-bob-bg'>
         {/* ################################# BASE ################################### */}
         <div className="mt-5  flex justify-center items-center ">
           <FormDivider title="Base" />
         </div>
-        <div className="mt-8 sm:px-24 md:px-64 ">
-          <p className="font-bold text-lg">Foundation Type</p>
-          <div className="hidden lg:flex justify-evenly mt-4">
-            <BigButton title="Brick" currentValue={foundationType} value="brick" onClick={() => { handleFoundationTypeChange("brick") }} />
-            <BigButton title="Slab" currentValue={foundationType} value="slab" onClick={() => { handleFoundationTypeChange("slab") }} />
-            <BigButton title="Reinforced Concrete" currentValue={foundationType} value="reinforced_concrete" onClick={() => { handleFoundationTypeChange("reinforced_concrete") }} />
+        <div className="flex flex-col items-center px-16 mt-8 sm:px-24 md:px-64">
+          <p className="font-bold text-lg self-start">Foundation Type</p>
+          <div className="hidden lg:flex mt-4">
+            <BigButton title="Brick" currentValue={foundationType} value="Brick" onClick={() => { handleFoundationTypeChange("Brick") }} />
+            <BigButton title="Slab" currentValue={foundationType} value="Slab" onClick={() => { handleFoundationTypeChange("Slab") }} />
+            <BigButton title="Reinforced Concrete" currentValue={foundationType} value="Reinforced Concrete" onClick={() => { handleFoundationTypeChange("Reinforced Concrete") }} />
+          </div>
+          <div className="lg:hidden mt-4 justify-center">
+            <select className="border-2 border-gray-400 focus:outline-none focus:border-bob-main h-12 w-56 rounded-md" value={foundationType || ""} onChange={ (e) => { handleFoundationTypeChange(e.target.value)}}>
+              {
+                foundationTypes.map((foundation, index) => {
+                  return(
+                    <option key={index} onClick={() => { handleFoundationTypeChange(foundation.key)}}>{foundation.value}</option>
+                  )
+                })
+              } 
+            </select>
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row mt-5 sm:px-24 md:px-64  ">
-          <div className="flex flex-col items-center md:flex-row w-1/2">
-            <p className="font-bold text-lg w-44">Floor Size</p>
+        <div className="px-16 flex flex-col md:flex-row mt-2 lg:mt-5 sm:px-24 md:px-64  ">
+          <div className="flex flex-col items-center md:flex-row md:w-7/12">
+            <p className="font-bold text-lg lg:w-44">Floor Size</p>
             <Input input_type="number" add_on="right" add_on_data={{ right: "m2"}} value={floorSize} onChange={(e) => { handleFloorSizeChange(parseInt(e.target.value)) }} />
           </div>
-          <div className="flex items-center">
-            <p className="font-bold text-lg w-44">No. of Floors</p>
+          <div className="flex flex-col md:flex-row items-center">
+            <p className="mt-2 lg:mt-0 font-bold text-lg lg:w-44">No. of Floors</p>
             <Input input_type="number" value={numOfFloors} onChange={(e) => { handleNumOfFloorsChange(parseInt(e.target.value)) }} />
           </div>
         </div>
@@ -214,48 +231,44 @@ function Form({ applianceList, plantsList }: InferGetStaticPropsType<typeof getS
         <div className="mt-10  flex justify-center items-center">
           <FormDivider title="Roof" />
         </div>
-        <div>
-          <div className="flex mt-5 sm:px-24 md:px-64">
-            <div className="flex items-center w-1/2">
-              <div className="flex items-center">
-                <p className="font-bold text-lg w-44">Roof Type</p>
-                <select className="border-2 border-gray-400 focus:outline-none focus:border-bob-main h-12 w-56 rounded-md" value={roofType || ""} onChange={ (e) => { handleRoofTypeChange(e.target.value)}}>
-                  {
-                    roofTypes.map((roof, index) => {
-                      return(
-                        <option key={index} onClick={() => { setRoofType(roof.key)}}>{roof.value}</option>
-                      )
-                    })
-                  }
-                </select>
-              </div>
-            </div>
-            <div className="flex items-center">
-              <p className="font-bold text-lg w-44">Roof Style</p>
-              <select className="border-2 border-gray-400 focus:outline-none focus:border-bob-main h-12 w-56 rounded-md" value={roofStyle || ""} onChange={ (e) => { handleRoofStyleChange(e.target.value)}}>
-                {
-                  roofStyles.map((roof, index) => {
-                    return(
-                      <option key={index} onClick={() => { setRoofStyle(roof.key)}}>{roof.value}</option>
-                    )
-                  })
-                }
-              </select>
-            </div>
+        <div className="flex flex-col lg:flex-row mt-5 sm:px-24 md:px-64">
+          <div className="flex flex-col lg:flex-row items-center md:w-7/12">
+            <p className="font-bold text-lg lg:w-44 ">Roof Type</p>
+            <select className="border-2 border-gray-400 focus:outline-none focus:border-bob-main h-12 w-56 rounded-md" value={roofType || ""} onChange={ (e) => { handleRoofTypeChange(e.target.value)}}>
+              {
+                roofTypes.map((roof, index) => {
+                  return(
+                    <option key={index} onClick={() => { setRoofType(roof.key)}}>{roof.value}</option>
+                  )
+                })
+              }
+            </select>
+          </div>
+          <div className="flex flex-col lg:flex-row items-center">
+            <p className="font-bold text-lg lg:w-44">Roof Style</p>
+            <select className="border-2 border-gray-400 focus:outline-none focus:border-bob-main h-12 w-56 rounded-md" value={roofStyle || ""} onChange={ (e) => { handleRoofStyleChange(e.target.value)}}>
+              {
+                roofStyles.map((roof, index) => {
+                  return(
+                    <option key={index} onClick={() => { setRoofStyle(roof.key)}}>{roof.value}</option>
+                  )
+                })
+              }
+            </select>
           </div>
         </div>
         {/* ########################################### GARDEN  ######################################  */}
         <div className="mt-10  flex justify-center items-center">
           <FormDivider title="Garden" />
         </div>
-        <div className="flex mt-5 sm:px-24 md:px-64 items-center">
-          <p className="font-bold text-lg w-44">Plants</p>
+        <div className="flex flex-col lg:flex-row mt-5 sm:px-24 md:px-64 items-center">
+          <p className="font-bold text-lg lg:w-44">Plants</p>
           <Select
             isMulti
             options={plantsList}
             menuPlacement="top"
             value={[...gardenPlants]}
-            className="w-11/12 border-2 border-gray-400 focus:border-bob-main active:border-bob-main active:outline-none focus:outline-none rounded-lg"
+            className="w-7/12 lg:w-9/12 border-2 border-gray-400 focus:border-bob-main active:border-bob-main active:outline-none focus:outline-none rounded-lg"
             onChange={ (choice) => { handleGardenPlantsChange(choice) }}
           />
         </div>

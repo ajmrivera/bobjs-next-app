@@ -56,18 +56,18 @@ function FormModal({ setModalOn, applianceList, createRoom }:FormModalProps) {
 
   return (
     <div className='h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed inset-0 z-50 flex justify-center items-center' >
-      <div className="bg-bob-bg opacity-100 w-6/12 pl-10 py-5">
+      <div className="bg-bob-bg opacity-100 w-11/12 p-4 lg:w-6/12 lg:pl-10 lg:py-5 overflow-y-auto">
         <div className='flex justify-center items-center'>
           <p className='text-xl font-bold'>Create Room</p>
         </div>
-        <div className="flex mt-5">
-          <div className="flex items-center w-1/2">
-            <p className="font-semibold text-xl w-48">Room Size</p>
+        <div className="flex flex-col lg:flex-row mt-5">
+          <div className="flex flex-col lg:flex-row items-center lg:w-1/2">
+            <p className="font-semibold text-xl self-start lg:w-48">Room Size</p>
             <Input input_type="number" add_on="right" add_on_data={{ right: "m2"}} onChange={(e) => { roomSizeChange(parseInt(e.target.value)) }} value={roomSize} />
           </div>
-          <div className="flex items-center">
-            <p className="font-semibold text-xl w-48">Room Type</p>
-            <select className="border-2 border-gray-400 focus:border-bob-main h-12 w-48 rounded-md focus:outline-none" onChange={(e) => { setRoomType(e.target.value) } }>
+          <div className="mt-5 lg:mt-0 flex flex-col lg:flex-row items-center">
+            <p className="font-semibold text-xl lg:self-center self-start lg:w-48 ">Room Type</p>
+            <select className="mt-2 lg:mt-0 border-2 border-gray-400 focus:border-bob-main h-12 w-full lg:w-48 rounded-md focus:outline-none" onChange={(e) => { setRoomType(e.target.value) } }>
               {
                 roomTypes.map((room, index) => {
                   return(
@@ -79,10 +79,10 @@ function FormModal({ setModalOn, applianceList, createRoom }:FormModalProps) {
           </div>
         </div>
         
-        <div className="flex mt-5">
-          <div className="flex items-center w-1/2">
-            <p className="font-semibold text-xl w-48">Floor Type</p>
-            <select className="border-2 border-gray-400 focus:outline-none focus:border-bob-main h-12 w-56 rounded-md">
+        <div className="flex flex-col lg:flex-row mt-5">
+          <div className="flex flex-col lg:flex-row items-center lg:w-1/2">
+            <p className="font-semibold text-xl lg:self-center self-start lg:w-48">Floor Type</p>
+            <select className="mt-2 lg:mt-0 border-2 border-gray-400 focus:outline-none focus:border-bob-main h-12 w-full lg:w-56 rounded-md">
               {
                 floorTypes.map((floor, index) => {
                   return(
@@ -92,16 +92,16 @@ function FormModal({ setModalOn, applianceList, createRoom }:FormModalProps) {
               }
             </select>
           </div>
-          <div className="flex items-center">
-            <p className="font-semibold text-xl w-48">No. of Windows</p>
+          <div className="mt-5 lg:mt-0 flex flex-col lg:flex-row items-center">
+            <p className="font-semibold text-xl lg:self-center self-start lg:w-48">No. of Windows</p>
             <Input input_type="number" value={numOfWindows} onChange={(e) => { numOfWindowsChange(parseInt(e.target.value)) }} />
           </div>
         </div>
 
-        <div className="flex mt-5">
-          <div className="flex items-center w-1/2">
-            <p className="font-semibold text-xl w-48">Window Style</p>
-            <select className="border-2 border-gray-400 focus:outline-none focus:border-bob-main h-12 w-56 rounded-md" onChange={(e) => { setWindowStyle(e.target.value) } }>
+        <div className="flex flex-col lg:flex-row mt-5">
+          <div className="flex flex-col lg:flex-row  items-center lg:w-1/2 ">
+            <p className="font-semibold text-xl lg:self-center self-start lg:w-48">Window Style</p>
+            <select className="mt-2 lg:mt-0 border-2 border-gray-400 focus:outline-none focus:border-bob-main h-12 w-full lg:w-56 rounded-md" onChange={(e) => { setWindowStyle(e.target.value) } }>
               {
                 windowStyles.map((window, index) => {
                   return(
@@ -111,9 +111,9 @@ function FormModal({ setModalOn, applianceList, createRoom }:FormModalProps) {
               }
             </select>
           </div>
-          <div className="flex items-center">
-            <p className="font-semibold text-xl w-48">Glass Type</p>
-            <select className="border-2 border-gray-400 focus:border-bob-main h-12 w-48 rounded-md" onChange={(e) => { setGlassType(e.target.value) } }>
+          <div className="mt-5 lg:mt-0 flex flex-col lg:flex-row items-center">
+            <p className="font-semibold text-xl lg:self-center self-start lg:w-48">Glass Type</p>
+            <select className="mt-2 lg:mt-0 border-2 border-gray-400 focus:border-bob-main h-12  w-full lg:w-48 rounded-md" onChange={(e) => { setGlassType(e.target.value) } }>
               {
                 glassTypes.map((glass, index) => {
                   return(
@@ -131,7 +131,7 @@ function FormModal({ setModalOn, applianceList, createRoom }:FormModalProps) {
                 <Select
                   isMulti
                   options={applianceList}
-                  className="w-11/12 border-2 border-gray-400 focus:border-bob-main active:border-bob-main active:outline-none focus:outline-none rounded-lg mt-2"
+                  className="w-full lg:w-11/12 border-2 border-gray-400 focus:border-bob-main active:border-bob-main active:outline-none focus:outline-none rounded-lg mt-2"
                   onChange={ (choice) => { setKitchenAppliances(choice) }}
                 />
               </div>

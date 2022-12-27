@@ -4,9 +4,9 @@ import { House } from '../public/index'
 
 function Landing() {
   return (
-    <div className='overflow-hidden'>
-      <div className="bg-bob-main h-[calc(100vh-56px)] flex min-w-screen flex-col px-5 justify-center z-50 overflow-hidden">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 250" className="absolute z-0 fill-bob-accent overflow-hidden">
+    <div>
+      <div className="bg-bob-main h-[calc(100vh-56px)] flex min-w-screen flex-col px-5 justify-center lg:z-50">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 250" className="hidden lg:block absolute z-0 fill-bob-accent">
           <g transform="translate(0.000000,250.000000) scale(0.100000,-0.100000)">
             <path d="M1445 2462 c-187 -138 -1305 -973 -1367 -1021 l-77 -58 63 -69 64
             -69 40 33 c23 17 43 32 46 32 3 0 3 -264 0 -587 -3 -324 -2 -618 2 -655 l7
@@ -44,10 +44,10 @@ function Landing() {
             65 63 37z"/>
           </g>
         </svg>
-        <p className='text-9xl font-bold mb-7 text-bob-bg z-50 overflow-hidden'>Want to easily</p>
-        <p className='text-9xl font-bold mb-7 text-bob-bg z-50 overflow-hidden'>build your dream home?</p>
-        <p className='text-6xl font-bold mb-20 text-bob-bg z-50 overflow-hidden'>Just use BOBjs</p>
-        <button className="rounded-lg bg-bob-bg w-72 h-16 z-50 overflow-hidden"><Link href="/form"><p className='text-3xl font-bold'>Get Started</p></Link></button>
+        <p className='text-4xl lg:text-9xl font-bold lg:mb-7 text-bob-bg z-50 '>Want to easily</p>
+        <p className='text-4xl lg:text-9xl font-bold mb-6 lg:mb-7 text-bob-bg z-50 '>build your dream home?</p>
+        <p className='text-4xl lg:text-6xl font-bold mb-16 lg:mb-20 text-bob-bg z-50'>Just use BOBjs</p>
+        <button className="w-48 h-12 rounded-lg bg-bob-bg lg:w-72 lg:h-16 lg:z-50"><Link href="/form"><p className='text-xl lg:text-3xl font-bold text-bob-accent'>Get Started</p></Link></button>
       </div>
     </div>
   )
