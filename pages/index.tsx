@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Header from '../components/header'
+import HeaderNav from '../components/headernav'
 import Landing from '../components/landing'
 
 const Home: NextPage = () => {
@@ -14,7 +14,7 @@ const Home: NextPage = () => {
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
       </Head>
 
-      <Header />
+      <HeaderNav />
       <Landing />
     </div>
   )

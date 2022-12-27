@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import Header from '../components/header'
+import HeaderNav from '../components/headernav'
 import { HouseType } from '../types/types';
-import FormDivider from '../components/formdivider';
-import Form from './form';
 
 function House() {
   const [houseData, setHouseData] = useState<HouseType|null>(null);
@@ -16,7 +14,7 @@ function House() {
 
   return (
     <div>
-      <Header />
+      <HeaderNav />
       <div className='flex flex-col justify-center'>
         <div className="flex justify-start items-center mt-5 ml-5">
           <p className="text-xl font-bold">Base</p>

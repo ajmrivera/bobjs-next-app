@@ -10,7 +10,7 @@ import RoomCard from '../components/roomcard';
 import uuid from 'react-uuid'
 import Head from 'next/head'
 import { useRouter } from 'next/router';
-import Header from '../components/header';
+import HeaderNav from '../components/headernav';
 
 function Form({ applianceList, plantsList }: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter();
@@ -111,11 +111,11 @@ function Form({ applianceList, plantsList }: InferGetStaticPropsType<typeof getS
       garden_plants: gardenPlants,
     }
 
+    localStorage.clear()
     localStorage.setItem("houseData", JSON.stringify(newHouse))
 
     setHouseData(newHouse)
     router.push('/house');
-
   }
 
   const handleFoundationTypeChange = (value:string) => {
@@ -161,7 +161,7 @@ function Form({ applianceList, plantsList }: InferGetStaticPropsType<typeof getS
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
       </Head>
-      <Header />
+      <HeaderNav />
       <p className='text-2xl lg:text-4xl font-bold bg-bob-bg pt-4 flex justify-center'>House Builder</p>
       <div className='flex flex-col justify-center bg-bob-bg'>
         {/* ################################# BASE ################################### */}
