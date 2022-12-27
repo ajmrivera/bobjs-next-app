@@ -38,7 +38,7 @@ function RoomCard({ room, id, deleteRoom }:RoomCardProps) {
           </div>
           {(room?.kitchen_appliances?.length > 0 && room.room_type === "Kitchen") &&
             <div className='flex'>
-              <p className="font-bold text-md mr-2">Kitchen Applianes:</p><p className="font-regular text-md">Yes</p>
+              <p className="font-bold text-md mr-2">Kitchen Appliances:</p><p className="font-regular text-md">Yes</p>
             </div>
           }
         </div>

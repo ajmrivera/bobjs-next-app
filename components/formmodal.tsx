@@ -37,6 +37,10 @@ function FormModal({ setModalOn, applianceList, createRoom }:FormModalProps) {
     setNumOfWindows(value)
   }
 
+  const handleKitchenAppliancesChange = (value:any) => {
+    setKitchenAppliances(value);
+  }
+
   const createNewRoom = () => {
     const newRoom:RoomObjectType = {
       id: uuid(),
@@ -132,7 +136,7 @@ function FormModal({ setModalOn, applianceList, createRoom }:FormModalProps) {
                   isMulti
                   options={applianceList}
                   className="w-full lg:w-11/12 border-2 border-gray-400 focus:border-bob-main active:border-bob-main active:outline-none focus:outline-none rounded-lg mt-2"
-                  onChange={ (choice) => { setKitchenAppliances(choice) }}
+                  onChange={ (choice) => { handleKitchenAppliancesChange(choice) }}
                 />
               </div>
         }

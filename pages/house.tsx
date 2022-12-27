@@ -65,7 +65,7 @@ function House() {
                     </div>
                     {(room.kitchen_appliances?.length > 0 && room.room_type === "Kitchen") &&
                       <div className='flex'>
-                        <p className="font-bold text-md mr-2">Kitchen Applianes:</p><p className="font-regular text-md">Yes</p>
+                        <p className="font-bold text-md mr-2">Kitchen Appliances:</p><p className="font-regular text-md">Yes</p>
                       </div>
                     }
                   </div>
@@ -86,21 +86,23 @@ function House() {
             <p className="font-bold text-md mr-2">Roof Style:</p><p className="font-regular text-md">{houseData.roof_style}</p>
           </div>
         </div>
-
+        
         {houseData?.garden_plants.length > 0 &&
-          <div className="flex justify-start items-center mt-5 ml-5">
-            <p className="text-xl font-bold">Garden</p>
+          <div className="mb-5">
+            <div className="flex justify-start items-center mt-5 ml-5">
+              <p className="text-xl font-bold">Garden</p>
+            </div>
+            <div className='ml-9'>
+              {houseData.garden_plants.map( (plant) => {
+                return(
+                  <div className='flex w-56'>
+                    <p className="font-regular text-md">{plant.label}</p>
+                  </div>
+                )
+              })}
+            </div>
           </div>
         }
-        <div className='ml-9'>
-          {houseData.garden_plants.map( (plant) => {
-            return(
-              <div className='flex w-56'>
-                <p className="font-regular text-md">{plant.label}</p>
-              </div>
-            )
-          })}
-        </div>
       </div>
     </div>
   )
