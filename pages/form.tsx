@@ -6,23 +6,14 @@ import BigButton from '../components/bigbutton';
 import Input from '../components/input';
 import FormModal from '../components/formmodal';
 import { InferGetStaticPropsType, GetStaticProps } from 'next';
-import { RoomObjectType } from '../types/types';
+import { HouseType, ObjectType, RoomObjectType } from '../types/types';
 import RoomCard from '../components/roomcard';
 import uuid from 'react-uuid'
 import Head from 'next/head'
-
-const initialRoom = {
-  id: uuid(),
-  room_size: 10,
-  room_type: "lounge",
-  floor_type: "wood",
-  num_of_windows: 2,
-  window_style: "flat",
-  glass_type: "tempered",
-  special_request: "",
-}
+import { useRouter } from 'next/router';
 
 function Form({ applianceList, plantsList }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const router = useRouter();
   const [foundationType, setFoundationType] = useState<string|null>(null);
   const [floorSize, setFloorSize] = useState<number>(1);
   const [numOfFloors, setNumOfFloors] = useState<number>(1);
@@ -36,12 +27,14 @@ function Form({ applianceList, plantsList }: InferGetStaticPropsType<typeof getS
       window_style: "Flat",
       glass_type: "Tempered",
       special_request: "",
+      kitchen_appliances: [],
     }
   ]);
   const [roofType, setRoofType] = useState<string|null>(null);
   const [roofStyle, setRoofStyle] = useState<string|null>(null);
-  const [gardenPlants, setGardenPlants] = useState<string[]>([]);
+  const [gardenPlants, setGardenPlants] = useState<ObjectType[]>([]);
   const [modalOn, setModalOn] = useState<boolean>(false);
+  const [houseData, setHouseData] = useState<HouseType|null>(null);
 
   useEffect(() => {
     const foundTypeLocal = localStorage.getItem("foundationType")
@@ -102,7 +95,7 @@ function Form({ applianceList, plantsList }: InferGetStaticPropsType<typeof getS
   const submitHouse = (e:any) => {
     e.preventDefault();
 
-    const newHouse = {
+    const newHouse:HouseType = {
       foundation_type: foundationType,
       floor_size: floorSize,
       num_of_floors: numOfFloors,
@@ -112,7 +105,11 @@ function Form({ applianceList, plantsList }: InferGetStaticPropsType<typeof getS
       garden_plants: gardenPlants,
     }
 
-    console.log(newHouse);
+    localStorage.setItem("houseData", JSON.stringify(newHouse))
+
+    setHouseData(newHouse)
+    router.push('/house');
+
   }
 
   const handleFoundationTypeChange = (value:string) => {
@@ -221,7 +218,7 @@ function Form({ applianceList, plantsList }: InferGetStaticPropsType<typeof getS
             <div className="flex items-center w-1/2">
               <div className="flex items-center">
                 <p className="font-bold text-lg w-44">Roof Type</p>
-                <select className="border-2 border-gray-400 focus:outline-none focus:border-bob-main h-12 w-56 rounded-md" onChange={ (e) => { handleRoofTypeChange(e.target.value)}}>
+                <select className="border-2 border-gray-400 focus:outline-none focus:border-bob-main h-12 w-56 rounded-md" value={roofType || ""} onChange={ (e) => { handleRoofTypeChange(e.target.value)}}>
                   {
                     roofTypes.map((roof, index) => {
                       return(
@@ -234,7 +231,7 @@ function Form({ applianceList, plantsList }: InferGetStaticPropsType<typeof getS
             </div>
             <div className="flex items-center">
               <p className="font-bold text-lg w-44">Roof Style</p>
-              <select className="border-2 border-gray-400 focus:outline-none focus:border-bob-main h-12 w-56 rounded-md" onChange={ (e) => { handleRoofStyleChange(e.target.value)}}>
+              <select className="border-2 border-gray-400 focus:outline-none focus:border-bob-main h-12 w-56 rounded-md" value={roofStyle || ""} onChange={ (e) => { handleRoofStyleChange(e.target.value)}}>
                 {
                   roofStyles.map((roof, index) => {
                     return(

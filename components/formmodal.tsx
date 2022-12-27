@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Input from './input';
 import TextArea from './textarea';
 import Select from 'react-select'
-import { RoomObjectType, RoomType, ApplianceObjectType, FloorType, WindowStyleType, GlassType } from '../types/types';
+import { RoomObjectType, ObjectType } from '../types/types';
 import uuid from 'react-uuid';
 
 interface FormModalProps {
@@ -19,7 +19,7 @@ function FormModal({ setModalOn, applianceList, createRoom }:FormModalProps) {
   const [windowStyle, setWindowStyle] = useState<string>("Bay");
   const [glassType, setGlassType] = useState<string>("Tempered");
   const [specialRequest, setSpecialRequest] = useState<string>("");
-  const [kitchenAppliances, setKitchenAppliances] = useState<any[]|null>([]);
+  const [kitchenAppliances, setKitchenAppliances] = useState<ObjectType[]>([]);
 
   const roomTypes = ["Bedroom", "Dining Room", "Lounge", "Kitchen", "Bathroom", "Office", "Extra"]
 

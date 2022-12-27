@@ -34,11 +34,13 @@ function RoomCard({ room, id, deleteRoom }:RoomCardProps) {
         </div>
         <div className='flex'>
           <div className='flex w-48'>
-          <p className="font-bold text-md mr-2">Special Requests:</p><p className="font-regular text-md">{(room.special_request === "")? "No":"Yes"}</p>
+            <p className="font-bold text-md mr-2">Special Requests:</p><p className="font-regular text-md">{(room.special_request === "")? "No":"Yes"}</p>
           </div>
-          <div className='flex'>
-          <p className="font-bold text-md mr-2">Kitchen Applianes:</p><p className="font-regular text-md">Yes</p>
-          </div>
+          {(room.kitchen_appliances.length > 0 && room.room_type === "Kitchen") &&
+            <div className='flex'>
+              <p className="font-bold text-md mr-2">Kitchen Applianes:</p><p className="font-regular text-md">Yes</p>
+            </div>
+          }
         </div>
       </div>
       <button className="border-2 w-16 h-12 rounded-md border-red-600"><p className="text-red-600 font-semibold" onClick={() => { deleteRoom(id)}}>Delete</p></button>

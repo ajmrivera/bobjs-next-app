@@ -5,7 +5,7 @@ import Landing from '../components/landing'
 
 const Home: NextPage = () => {
   return (
-    <div className="min-h-screen">
+    <div className="h-screen overflow-hidden">
       <Head>
         <title>BOBjs</title>
         <link rel="icon" href="/favicon.ico" />

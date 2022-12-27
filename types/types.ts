@@ -7,12 +7,22 @@ export type RoomObjectType = {
   window_style: string,
   glass_type: string,
   special_request: string,
-  kitchen_appliances?: any[]|null,
+  kitchen_appliances: ObjectType[],
 }
 
-export type ApplianceObjectType = {
+export type ObjectType = {
   "value": string,
   "label": string
+}
+
+export type HouseType = {
+  foundation_type: string|null,
+  floor_size: number,
+  num_of_floors: number,
+  rooms: RoomObjectType[],
+  roof_type: string|null,
+  roof_style: string|null,
+  garden_plants: ObjectType[],
 }
 
 export type RoomType = "Bedroom" | "Dining Room" | "Lounge" | "Kitchen" | "Bathroom" | "Office" | "Extra"
